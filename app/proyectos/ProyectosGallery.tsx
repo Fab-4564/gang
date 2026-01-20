@@ -1,3 +1,15 @@
+type Project = {
+  id: number
+  title: string
+  category: string
+  image: string
+  description: string
+  details: {
+    cliente: string
+    año: string
+  }
+}
+
 
 'use client';
 
@@ -9,7 +21,8 @@ import Link from 'next/link';
 
 export default function ProyectosGallery() {
   const [selectedCategory, setSelectedCategory] = useState('todos');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+
 
   const categories = [
     { id: 'todos', name: 'Todos los Proyectos' },
@@ -256,7 +269,7 @@ export default function ProyectosGallery() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project: Project) => (
               <div key={project.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div className="relative h-64 overflow-hidden">
                   <img 
